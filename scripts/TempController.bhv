@@ -1,0 +1,52 @@
+    <behavior startdate="25/12/2012-00:00:00" factor="1440">
+     
+        <!-- Create the different zones -->
+        <create-zone id="kitchen"  leftX="410" topY="370" X-Length="240" Y-Length="195" />   
+        <create-zone id="livingroom" leftX="410" topY="22" X-Length="240" Y-Length="340" />
+        <create-zone id="bedroom"  leftX="55" topY="370" X-Length="250" Y-Length="195" />   
+        <create-zone id="bathroom"  leftX="55" topY="20" X-Length="240" Y-Length="340" />
+     
+
+        <add-zone-variable zoneId="kitchen" variable="Temperature" />
+        <add-zone-variable zoneId="livingroom" variable="Temperature" />
+        <add-zone-variable zoneId="bedroom" variable="Temperature" />
+        <add-zone-variable zoneId="bathroom" variable="Temperature" />
+
+        <modify-zone-variable zoneId="kitchen" variable="Temperature" value="303.15"/>
+        <modify-zone-variable zoneId="livingroom" variable="Temperature" value="303.15"/>
+        <modify-zone-variable zoneId="bedroom" variable="Temperature" value="303.15"/>
+        <modify-zone-variable zoneId="bathroom" variable="Temperature" value="303.15"/>
+
+        <!-- Creating a Thermometer, a Heater and a Cooler-->
+        <create-device id="Ther-kitchen" type="iCasa.Thermometer" />
+        <create-device id="Ther-bedroom" type="iCasa.Thermometer" />
+        <create-device id="Ther-bathroom" type="iCasa.Thermometer" />
+        <create-device id="Ther-livingroom" type="iCasa.Thermometer" />
+
+        <create-device id="Heat-kitchen" type="iCasa.Heater" />
+        <create-device id="Heat-bedroom" type="iCasa.Heater" />
+        <create-device id="Heat-bathroom" type="iCasa.Heater" />
+        <create-device id="Heat-livingroom" type="iCasa.Heater" />
+
+        <create-device id="Cool-kitchen" type="iCasa.Cooler" />
+        <create-device id="Cool-bedroom" type="iCasa.Cooler" />
+        <create-device id="Cool-bathroom" type="iCasa.Cooler" />
+        <create-device id="Cool-livingroom" type="iCasa.Cooler" />
+     
+        <!-- Moving the devices to a given room-->
+        <move-device-zone deviceId="Ther-kitchen" zoneId="kitchen" />
+        <move-device-zone deviceId="Ther-bedroom" zoneId="bedroom" />
+        <move-device-zone deviceId="Ther-bathroom" zoneId="bathroom" />
+        <move-device-zone deviceId="Ther-livingroom" zoneId="livingroom" />
+
+        <move-device-zone deviceId="Heat-kitchen" zoneId="kitchen" />
+        <move-device-zone deviceId="Heat-bedroom" zoneId="bedroom" />
+        <move-device-zone deviceId="Heat-bathroom" zoneId="bathroom" />
+        <move-device-zone deviceId="Heat-livingroom" zoneId="livingroom" />
+        
+        <move-device-zone deviceId="Cool-kitchen" zoneId="kitchen" />
+        <move-device-zone deviceId="Cool-bedroom" zoneId="bedroom" />
+        <move-device-zone deviceId="Cool-bathroom" zoneId="bathroom" />
+        <move-device-zone deviceId="Cool-livingroom" zoneId="livingroom" />
+     
+    </behavior>
