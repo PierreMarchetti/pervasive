@@ -37,16 +37,17 @@ public class BinaryFollowMeImpl implements DeviceListener {
 	 * Bind Method for binaryLights dependency.
 	 * This method is not mandatory and implemented for debug purpose only.
 	 */
-	public void bindBinaryLight(BinaryLight binaryLight, Map<Object, Object> properties) {
-		System.out.println("--------------------bind binary light " + binaryLight.getSerialNumber());
+	public void bindBinaryLight(BinaryLight binaryLight, Map properties) {
+		binaryLight.addListener(this);
+		System.out.println("bind binary light " + binaryLight.getSerialNumber());
 	}
-
 	/**
 	 * Unbind Method for binaryLights dependency. 
 	 * This method is not mandatory and implemented for debug purpose only.
 	 */
-	public void unbindBinaryLight(BinaryLight binaryLight, Map<Object, Object> properties) {
-		System.out.println("--------------------unbind binary light " + binaryLight.getSerialNumber());
+	public void unbindBinaryLight(BinaryLight binaryLight, Map properties) {
+		binaryLight.removeListener(this);
+		System.out.println("unbind binary light " + binaryLight.getSerialNumber());
 	}
 
 	/** 
@@ -100,36 +101,61 @@ public class BinaryFollowMeImpl implements DeviceListener {
 
 	@Override
 	public void devicePropertyModified(GenericDevice device, String propertyName, Object oldValue, Object newValue) {
-		PresenceSensor changingSensor = (PresenceSensor) device;
-		// check the change is related to presence sensing
-		if (propertyName.equals(PresenceSensor.PRESENCE_SENSOR_SENSED_PRESENCE)) {
-			// get the location where the sensor is:
-			String detectorLocation = (String) changingSensor.getPropertyValue(LOCATION_PROPERTY_NAME);
-			// if the location is known :
-			if (!detectorLocation.equals(LOCATION_UNKNOWN)) {
-				// get the related binary lights
-				List<BinaryLight> sameLocationLigths = getBinaryLightFromLocation(detectorLocation);
-				for (BinaryLight binaryLight : sameLocationLigths) {
-					// and switch them on/off depending on the sensed presence
-					if (changingSensor.getSensedPresence()) {
-						binaryLight.turnOn();
-					} else {
-						binaryLight.turnOff();
+		if (device instanceof BinaryLight) {
+			BinaryLight changingLight = (BinaryLight) device;
+			// check the change is related to location
+			if (propertyName.equals(BinaryLight.LOCATION_PROPERTY_NAME)) {
+				// get the location where the sensor is:
+				String location = (String) changingLight.getPropertyValue(LOCATION_PROPERTY_NAME);
+				// if the location is known :
+				if (!detectorLocation.equals(LOCATION_UNKNOWN)) {
+					List<PresenceSensor> sameLocationPresenceSensors = getPresenceSensorsFromLocation(String location);
+					for (PresenceSensor presenceSensor : sameLocationPresenceSensors) {
+						if (presenceSensor.getSensedPresence()) {
+							changingLight.turnOn();
+						}
+						else {
+							changingLight.turnOff();
+						}
 					}
+
 				}
-				
-				// get the related dimmer lights
-				List<DimmerLight> sameLocationDimmerLights = getDimmerLightFromLocation(detectorLocation);
-				for (DimmerLight dimmerLight : sameLocationDimmerLights) {
-					// and switch them on/off depending on the sensed presence
-					if (changingSensor.getSensedPresence()) {
-						dimmerLight.setPowerLevel(1.0);
-					} else {
-						dimmerLight.setPowerLevel(0.0);
+
+			}
+		}
+		else if (device instanceof PresenceSensor) {
+			PresenceSensor changingSensor = (PresenceSensor) device;
+			// check the change is related to presence sensing
+			if (propertyName.equals(PresenceSensor.PRESENCE_SENSOR_SENSED_PRESENCE)) {
+				// get the location where the sensor is:
+				String detectorLocation = (String) changingSensor.getPropertyValue(LOCATION_PROPERTY_NAME);
+				// if the location is known :
+				if (!detectorLocation.equals(LOCATION_UNKNOWN)) {
+					// get the related binary lights
+					List<BinaryLight> sameLocationLigths = getBinaryLightFromLocation(detectorLocation);
+					for (BinaryLight binaryLight : sameLocationLigths) {
+						// and switch them on/off depending on the sensed presence
+						if (changingSensor.getSensedPresence()) {
+							binaryLight.turnOn();
+						} else {
+							binaryLight.turnOff();
+						}
+					}
+					
+					// get the related dimmer lights
+					List<DimmerLight> sameLocationDimmerLights = getDimmerLightFromLocation(detectorLocation);
+					for (DimmerLight dimmerLight : sameLocationDimmerLights) {
+						// and switch them on/off depending on the sensed presence
+						if (changingSensor.getSensedPresence()) {
+							dimmerLight.setPowerLevel(1.0);
+						} else {
+							dimmerLight.setPowerLevel(0.0);
+						}
 					}
 				}
 			}
 		}
+
 	}
 
 	@Override
@@ -174,5 +200,17 @@ public class BinaryFollowMeImpl implements DeviceListener {
 	public void UnbindDimmerLight(DimmerLight dimmerLight, Map properties) {
 		// TODO: Add your implementation code here
 	}
+
+	private synchronized List<PresenceSensor> getPresenceSensorsFromLocation(String location) {
+		  List<PresenceSensor> presenceSensorsFromLocation = new ArrayList<PresenceSensor>();
+		  
+		  for (PresenceSensor presenceSensor : presenceSensors) {
+		    if (presenceSensor.getPropertyValue(LOCATION_PROPERTY_NAME).equals(location)) {
+		    	presenceSensorsFromLocation.add(presenceSensor);
+		    }
+		  }
+		  return presenceSensorsFromLocation;
+	}
+	
 
 }
