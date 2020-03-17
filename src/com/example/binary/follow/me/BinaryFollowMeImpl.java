@@ -108,8 +108,8 @@ public class BinaryFollowMeImpl implements DeviceListener {
 				// get the location where the sensor is:
 				String location = (String) changingLight.getPropertyValue(LOCATION_PROPERTY_NAME);
 				// if the location is known :
-				if (!detectorLocation.equals(LOCATION_UNKNOWN)) {
-					List<PresenceSensor> sameLocationPresenceSensors = getPresenceSensorsFromLocation(String location);
+				if (!location.equals(LOCATION_UNKNOWN)) {
+					List<PresenceSensor> sameLocationPresenceSensors = getPresenceSensorsFromLocation(location);
 					for (PresenceSensor presenceSensor : sameLocationPresenceSensors) {
 						if (presenceSensor.getSensedPresence()) {
 							changingLight.turnOn();
