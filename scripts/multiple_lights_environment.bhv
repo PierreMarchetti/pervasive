@@ -53,65 +53,67 @@
 
 	<!-- Device Section -->
 
-	<create-device id="BinaryLight-2757a54a4d" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BinaryLight-2757a54a4d" zoneId="bathroom" />
+	<!-- devices in bathroom -->
+	<create-device id="BinaryLight_1_bathroom" type="iCasa.BinaryLight" />
+	<create-device id="BinaryLight_2_bathroom" type="iCasa.BinaryLight" />
+	<create-device id="ToogleSwitch_1_bathroom" type="iCasa.ToggleSwitch" />
+	<create-device id="PresenceSensor_1_bathroom" type="iCasa.PresenceSensor" />
+	<create-device id="DimmerLight_1_bathroom" type="iCasa.DimmerLight" />
 
-	<create-device id="DimmerLight-3df4a30e4e" type="iCasa.DimmerLight" />
-	<move-device-zone deviceId="DimmerLight-3df4a30e4e" zoneId="kitchen" />
+	<move-device-zone deviceId="BinaryLight_1_bathroom" zoneId="bathroom" />
+	<move-device-zone deviceId="BinaryLight_2_bathroom" zoneId="bathroom" />
+	<move-device-zone deviceId="ToogleSwitch_1_bathroom" zoneId="bathroom" />
+	<move-device-zone deviceId="PresenceSensor_1_bathroom" zoneId="bathroom" />
+	<move-device-zone deviceId="DimmerLight_1_bathroom" zoneId="bathroom" />
 
-	<create-device id="BiLi-C7496W-S" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BiLi-C7496W-S" zoneId="bedroom" />
 
-	<create-device id="BinaryLight-8a71b44a29" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BinaryLight-8a71b44a29" zoneId="livingroom" />
+	<!-- devices in bedroom -->
+	<create-device id="BinaryLight_1_bedroom" type="iCasa.BinaryLight" />
+	<create-device id="BinaryLight_2_bedroom" type="iCasa.BinaryLight" />
+	<create-device id="BinaryLight_3_bedroom" type="iCasa.BinaryLight" />
+	<create-device id="ToogleSwitch_1_bedroom" type="iCasa.ToggleSwitch" />
+	<create-device id="DimmerLight_1_bedroom" type="iCasa.DimmerLight" />
+	<create-device id="PresenceSensor_1_bedroom" type="iCasa.PresenceSensor" />
 
-	<create-device id="BiLi-A7496W-S" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BiLi-A7496W-S" zoneId="kitchen" />
+	<move-device-zone deviceId="BinaryLight_1_bedroom" zoneId="bedroom" />
+	<move-device-zone deviceId="BinaryLight_2_bedroom" zoneId="bedroom" />
+	<move-device-zone deviceId="BinaryLight_3_bedroom" zoneId="bedroom" />
+	<move-device-zone deviceId="ToogleSwitch_1_bedroom" zoneId="bedroom" />
+	<move-device-zone deviceId="DimmerLight_1_bedroom" zoneId="bedroom" />
+	<move-device-zone deviceId="PresenceSensor_1_bedroom" zoneId="bedroom" />
 
-	<create-device id="BiLi-B7496W-S" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BiLi-B7496W-S" zoneId="livingroom" />
 
-	<create-device id="Toogle-A1286X-Y" type="iCasa.ToggleSwitch" />
-	<move-device-zone deviceId="Toogle-A1286X-Y" zoneId="kitchen" />
+	<!-- devices in kitchen -->
+	<create-device id="DimmerLight_1_kitchen" type="iCasa.DimmerLight" />
+	<create-device id="BinaryLight_1_kitchen" type="iCasa.BinaryLight" />
+	<create-device id="BinaryLight_2_kitchen" type="iCasa.BinaryLight" />
+	<create-device id="BinaryLight_3_kitchen" type="iCasa.BinaryLight" />
+	<create-device id="ToogleSwitch_1_kitchen" type="iCasa.ToggleSwitch" />
+	<create-device id="PresenceSensor_1_kitchen" type="iCasa.PresenceSensor" />
 
-	<create-device id="Toogle-B1286X-Y" type="iCasa.ToggleSwitch" />
-	<move-device-zone deviceId="Toogle-B1286X-Y" zoneId="livingroom" />
+	<move-device-zone deviceId="DimmerLight_1_kitchen" zoneId="kitchen" />
+	<move-device-zone deviceId="BinaryLight_1_kitchen" zoneId="kitchen" />
+	<move-device-zone deviceId="BinaryLight_2_kitchen" zoneId="kitchen" />
+	<move-device-zone deviceId="BinaryLight_3_kitchen" zoneId="kitchen" />
+	<move-device-zone deviceId="ToogleSwitch_1_kitchen" zoneId="kitchen" />
+	<move-device-zone deviceId="PresenceSensor_1_kitchen" zoneId="kitchen" />
 
-	<create-device id="Toogle-C1286X-Y" type="iCasa.ToggleSwitch" />
-	<move-device-zone deviceId="Toogle-C1286X-Y" zoneId="bedroom" />
 
-	<create-device id="Toogle-D1286X-Y" type="iCasa.ToggleSwitch" />
-	<move-device-zone deviceId="Toogle-D1286X-Y" zoneId="bathroom" />
+	<!-- devices in livingroom -->
+	<create-device id="BinaryLight_1_livingroom" type="iCasa.BinaryLight" />
+	<create-device id="BinaryLight_2_livingroom" type="iCasa.BinaryLight" />
+	<create-device id="BinaryLight_3_livingroom" type="iCasa.BinaryLight" />
+	<create-device id="ToogleSwitch_1_livingroom" type="iCasa.ToggleSwitch" />
+	<create-device id="PresenceSensor_1_livingroom" type="iCasa.PresenceSensor" />
+	<create-device id="DimmerLight_1_livingroom" type="iCasa.DimmerLight" />
 
-	<create-device id="BinaryLight-b9a2106f01" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BinaryLight-b9a2106f01" zoneId="kitchen" />
+	<move-device-zone deviceId="BinaryLight_1_livingroom" zoneId="livingroom" />
+	<move-device-zone deviceId="BinaryLight_2_livingroom" zoneId="livingroom" />
+	<move-device-zone deviceId="BinaryLight_3_livingroom" zoneId="livingroom" />
+	<move-device-zone deviceId="ToogleSwitch_1_livingroom" zoneId="livingroom" />
+	<move-device-zone deviceId="PresenceSensor_1_livingroom" zoneId="livingroom" />
+	<move-device-zone deviceId="DimmerLight_1_livingroom" zoneId="livingroom" />
 
-	<create-device id="Pres-D1255D-D" type="iCasa.PresenceSensor" />
-	<move-device-zone deviceId="Pres-D1255D-D" zoneId="bathroom" />
-
-	<create-device id="Pres-A1255D-D" type="iCasa.PresenceSensor" />
-	<move-device-zone deviceId="Pres-A1255D-D" zoneId="kitchen" />
-
-	<create-device id="Pres-B1255D-D" type="iCasa.PresenceSensor" />
-	<move-device-zone deviceId="Pres-B1255D-D" zoneId="livingroom" />
-
-	<create-device id="Pres-C1255D-D" type="iCasa.PresenceSensor" />
-	<move-device-zone deviceId="Pres-C1255D-D" zoneId="bedroom" />
-
-	<create-device id="BiLi-D7496W-S" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BiLi-D7496W-S" zoneId="bathroom" />
-
-	<create-device id="DimmerLight-d829868951" type="iCasa.DimmerLight" />
-	<move-device-zone deviceId="DimmerLight-d829868951" zoneId="bedroom" />
-
-	<create-device id="DimmerLight-1084d52146" type="iCasa.DimmerLight" />
-	<move-device-zone deviceId="DimmerLight-1084d52146" zoneId="bathroom" />
-
-	<create-device id="DimmerLight-1284af518a" type="iCasa.DimmerLight" />
-	<move-device-zone deviceId="DimmerLight-1284af518a" zoneId="livingroom" />
-
-	<create-device id="BinaryLight-52945b2fce" type="iCasa.BinaryLight" />
-	<move-device-zone deviceId="BinaryLight-52945b2fce" zoneId="bedroom" />
 
 
 	<!-- Person Section -->

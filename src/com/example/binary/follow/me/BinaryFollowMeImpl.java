@@ -21,14 +21,14 @@ public class BinaryFollowMeImpl implements DeviceListener {
 	 * The name of the location for unknown value
 	 */
 	public static final String LOCATION_UNKNOWN = "unknown";
+	
+	private static final int maxLightsToTurnOnPerRoom = 2;
 
 	/** Field for binaryLights dependency */
 	private BinaryLight[] binaryLights;
 
 	/** Field for presenceSensors dependency */
 	private PresenceSensor[] presenceSensors;
-
-	private int maxLightsToTurnOnPerRoom = 1;
 
 	/** Field for dimmerLights dependency */
 	private DimmerLight[] dimmerLights;
@@ -66,6 +66,18 @@ public class BinaryFollowMeImpl implements DeviceListener {
 	public void unbindPresenceSensor(PresenceSensor presenceSensor, Map properties) {
 		System.out.println("--------------------Unbind presence sensor " + presenceSensor.getSerialNumber());
 		presenceSensor.removeListener(this);
+	}
+	
+	/** Bind Method for dimmerLights dependency */
+	public void bindDimmerLight(DimmerLight dimmerLight, Map properties) {
+		dimmerLight.addListener(this);
+		System.out.println("bind dimmer light " + dimmerLight.getSerialNumber());
+	}
+
+	/** Unbind Method for dimmerLights dependency */
+	public void unbindDimmerLight(DimmerLight dimmerLight, Map properties) {
+		dimmerLight.addListener(this);
+		System.out.println("unbind dimmer light " + dimmerLight.getSerialNumber());
 	}
 
 	/** Component Lifecycle Method */
@@ -109,20 +121,15 @@ public class BinaryFollowMeImpl implements DeviceListener {
 				String location = (String) changingLight.getPropertyValue(LOCATION_PROPERTY_NAME);
 				// if the location is known :
 				if (!location.equals(LOCATION_UNKNOWN)) {
-					List<PresenceSensor> sameLocationPresenceSensors = getPresenceSensorsFromLocation(location);
-					for (PresenceSensor presenceSensor : sameLocationPresenceSensors) {
-						if (presenceSensor.getSensedPresence()) {
-							changingLight.turnOn();
-						}
-						else {
-							changingLight.turnOff();
-						}
+					List<BinaryLight> sameLocationLights = getBinaryLightsFromLocation(location);
+					List<PresenceSensor> sameLocationPresenceSensors = getPresenceSensorsFromLocation(location);					
+					for (PresenceSensor p : sameLocationPresenceSensors) {
+						// turn on/off the binary lights in the same location as the presence sensor
+						turnOnBinaryLights(p, sameLocationLights);
 					}
-
 				}
-
 			}
-		}
+		} 
 		else if (device instanceof PresenceSensor) {
 			PresenceSensor changingSensor = (PresenceSensor) device;
 			// check the change is related to presence sensing
@@ -132,18 +139,11 @@ public class BinaryFollowMeImpl implements DeviceListener {
 				// if the location is known :
 				if (!detectorLocation.equals(LOCATION_UNKNOWN)) {
 					// get the related binary lights
-					List<BinaryLight> sameLocationLigths = getBinaryLightFromLocation(detectorLocation);
-					for (BinaryLight binaryLight : sameLocationLigths) {
-						// and switch them on/off depending on the sensed presence
-						if (changingSensor.getSensedPresence()) {
-							binaryLight.turnOn();
-						} else {
-							binaryLight.turnOff();
-						}
-					}
+					List<BinaryLight> sameLocationLights = getBinaryLightsFromLocation(detectorLocation);
+					turnOnBinaryLights(changingSensor, sameLocationLights);
 					
 					// get the related dimmer lights
-					List<DimmerLight> sameLocationDimmerLights = getDimmerLightFromLocation(detectorLocation);
+					List<DimmerLight> sameLocationDimmerLights = getDimmerLightsFromLocation(detectorLocation);
 					for (DimmerLight dimmerLight : sameLocationDimmerLights) {
 						// and switch them on/off depending on the sensed presence
 						if (changingSensor.getSensedPresence()) {
@@ -155,6 +155,8 @@ public class BinaryFollowMeImpl implements DeviceListener {
 				}
 			}
 		}
+
+
 
 	}
 
@@ -170,7 +172,7 @@ public class BinaryFollowMeImpl implements DeviceListener {
 
 	}
 
-	private synchronized List<BinaryLight> getBinaryLightFromLocation(String location) {
+	private synchronized List<BinaryLight> getBinaryLightsFromLocation(String location) {
 		List<BinaryLight> binaryLightsLocation = new ArrayList<BinaryLight>();
 		for (BinaryLight binLight : binaryLights) {
 			if (binLight.getPropertyValue(LOCATION_PROPERTY_NAME).equals(location)) {
@@ -181,7 +183,7 @@ public class BinaryFollowMeImpl implements DeviceListener {
 	}
 	
 	
-	private synchronized List<DimmerLight> getDimmerLightFromLocation(String location) {
+	private synchronized List<DimmerLight> getDimmerLightsFromLocation(String location) {
 		List<DimmerLight> dimmerLightsLocation = new ArrayList<DimmerLight>();
 		for (DimmerLight binLight : dimmerLights) {
 			if (binLight.getPropertyValue(LOCATION_PROPERTY_NAME).equals(location)) {
@@ -191,15 +193,7 @@ public class BinaryFollowMeImpl implements DeviceListener {
 		return dimmerLightsLocation;
 	}
 
-	/** Bind Method for dimmerLights dependency */
-	public void BindDimmerLight(DimmerLight dimmerLight, Map properties) {
-		// TODO: Add your implementation code here
-	}
-
-	/** Unbind Method for dimmerLights dependency */
-	public void UnbindDimmerLight(DimmerLight dimmerLight, Map properties) {
-		// TODO: Add your implementation code here
-	}
+	
 
 	private synchronized List<PresenceSensor> getPresenceSensorsFromLocation(String location) {
 		  List<PresenceSensor> presenceSensorsFromLocation = new ArrayList<PresenceSensor>();
@@ -210,6 +204,23 @@ public class BinaryFollowMeImpl implements DeviceListener {
 		    }
 		  }
 		  return presenceSensorsFromLocation;
+	}
+	
+	private synchronized void turnOnBinaryLights(PresenceSensor changingSensor, List<BinaryLight> binarylights) {
+		for (BinaryLight binaryLight : binarylights) {
+			binaryLight.turnOff();
+		}
+		
+		int i = 0;
+		for (BinaryLight binaryLight : binarylights) {
+			if (i < maxLightsToTurnOnPerRoom && changingSensor.getSensedPresence()) {
+				binaryLight.turnOn();
+				i++;
+			} 
+			else {
+				binaryLight.turnOff();
+			}
+		}
 	}
 	
 
