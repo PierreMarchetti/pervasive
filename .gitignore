@@ -1,4 +1,6 @@
 .settings
-bin/*
-.classpath
-.project
+*/bin/
+*/.classpath
+*/.project
+.metadata
+/icasa.teaching.distribution/

@@ -59,35 +59,38 @@ iPOJO-Components: instance { $component="BinaryFollowMe" $name="BinaryFo
  b.adele.icasa.device.DeviceListener" }field { $name="binaryLights" $typ
  e="fr.liglab.adele.icasa.device.light.BinaryLight[]" }field { $name="di
  mmerLights" $type="fr.liglab.adele.icasa.device.light.DimmerLight[]" }f
- ield { $name="maxLightsToTurnOnPerRoom" $type="int" }field { $name="pre
- senceSensors" $type="fr.liglab.adele.icasa.device.presence.PresenceSens
- or[]" }method { $name="bindBinaryLight" $arguments="{fr.liglab.adele.ic
- asa.device.light.BinaryLight,java.util.Map}" $names="{binaryLight,prope
- rties}" }method { $name="unbindBinaryLight" $arguments="{fr.liglab.adel
- e.icasa.device.light.BinaryLight,java.util.Map}" $names="{binaryLight,p
- roperties}" }method { $name="bindPresenceSensor" $arguments="{fr.liglab
- .adele.icasa.device.presence.PresenceSensor,java.util.Map}" $names="{pr
- esenceSensor,properties}" }method { $name="unbindPresenceSensor" $argum
- ents="{fr.liglab.adele.icasa.device.presence.PresenceSensor,java.util.M
- ap}" $names="{presenceSensor,properties}" }method { $name="stop" }metho
- d { $name="start" }method { $name="deviceAdded" $arguments="{fr.liglab.
- adele.icasa.device.GenericDevice}" $names="{arg0}" }method { $name="dev
- iceEvent" $arguments="{fr.liglab.adele.icasa.device.GenericDevice,java.
- lang.Object}" $names="{arg0,arg1}" }method { $name="devicePropertyAdded
- " $arguments="{fr.liglab.adele.icasa.device.GenericDevice,java.lang.Str
- ing}" $names="{arg0,arg1}" }method { $name="devicePropertyModified" $ar
- guments="{fr.liglab.adele.icasa.device.GenericDevice,java.lang.String,j
- ava.lang.Object,java.lang.Object}" $names="{device,propertyName,oldValu
- e,newValue}" }method { $name="devicePropertyRemoved" $arguments="{fr.li
- glab.adele.icasa.device.GenericDevice,java.lang.String}" $names="{arg0,
- arg1}" }method { $name="deviceRemoved" $arguments="{fr.liglab.adele.ica
- sa.device.GenericDevice}" $names="{arg0}" }method { $name="getBinaryLig
- htFromLocation" $return="java.util.List" $arguments="{java.lang.String}
- " $names="{location}" }method { $name="getDimmerLightFromLocation" $ret
- urn="java.util.List" $arguments="{java.lang.String}" $names="{location}
- " }method { $name="BindDimmerLight" $arguments="{fr.liglab.adele.icasa.
- device.light.DimmerLight,java.util.Map}" $names="{dimmerLight,propertie
- s}" }method { $name="UnbindDimmerLight" $arguments="{fr.liglab.adele.ic
- asa.device.light.DimmerLight,java.util.Map}" $names="{dimmerLight,prope
- rties}" }}}
+ ield { $name="presenceSensors" $type="fr.liglab.adele.icasa.device.pres
+ ence.PresenceSensor[]" }method { $name="bindBinaryLight" $arguments="{f
+ r.liglab.adele.icasa.device.light.BinaryLight,java.util.Map}" $names="{
+ binaryLight,properties}" }method { $name="unbindBinaryLight" $arguments
+ ="{fr.liglab.adele.icasa.device.light.BinaryLight,java.util.Map}" $name
+ s="{binaryLight,properties}" }method { $name="bindPresenceSensor" $argu
+ ments="{fr.liglab.adele.icasa.device.presence.PresenceSensor,java.util.
+ Map}" $names="{presenceSensor,properties}" }method { $name="unbindPrese
+ nceSensor" $arguments="{fr.liglab.adele.icasa.device.presence.PresenceS
+ ensor,java.util.Map}" $names="{presenceSensor,properties}" }method { $n
+ ame="bindDimmerLight" $arguments="{fr.liglab.adele.icasa.device.light.D
+ immerLight,java.util.Map}" $names="{dimmerLight,properties}" }method { 
+ $name="unbindDimmerLight" $arguments="{fr.liglab.adele.icasa.device.lig
+ ht.DimmerLight,java.util.Map}" $names="{dimmerLight,properties}" }metho
+ d { $name="stop" }method { $name="start" }method { $name="deviceAdded" 
+ $arguments="{fr.liglab.adele.icasa.device.GenericDevice}" $names="{arg0
+ }" }method { $name="deviceEvent" $arguments="{fr.liglab.adele.icasa.dev
+ ice.GenericDevice,java.lang.Object}" $names="{arg0,arg1}" }method { $na
+ me="devicePropertyAdded" $arguments="{fr.liglab.adele.icasa.device.Gene
+ ricDevice,java.lang.String}" $names="{arg0,arg1}" }method { $name="devi
+ cePropertyModified" $arguments="{fr.liglab.adele.icasa.device.GenericDe
+ vice,java.lang.String,java.lang.Object,java.lang.Object}" $names="{devi
+ ce,propertyName,oldValue,newValue}" }method { $name="devicePropertyRemo
+ ved" $arguments="{fr.liglab.adele.icasa.device.GenericDevice,java.lang.
+ String}" $names="{arg0,arg1}" }method { $name="deviceRemoved" $argument
+ s="{fr.liglab.adele.icasa.device.GenericDevice}" $names="{arg0}" }metho
+ d { $name="getBinaryLightsFromLocation" $return="java.util.List" $argum
+ ents="{java.lang.String}" $names="{location}" }method { $name="getDimme
+ rLightsFromLocation" $return="java.util.List" $arguments="{java.lang.St
+ ring}" $names="{location}" }method { $name="getPresenceSensorsFromLocat
+ ion" $return="java.util.List" $arguments="{java.lang.String}" $names="{
+ location}" }method { $name="turnOnBinaryLights" $arguments="{fr.liglab.
+ adele.icasa.device.presence.PresenceSensor,java.util.List}" $names="{ch
+ angingSensor,binarylights}" }}}
 
