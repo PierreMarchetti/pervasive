@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipojo xmlns="org.apache.felix.ipojo">
+  <component classname="follow.me.multiple.impl.FollowMeProviderImpl" name="FollowMeProvider">
+    <provides specifications="follow.me.multiple.service.FollowMeItf">
+      <property field="maxNbLightsToTurnOn" name="maxNbLightsToTurnOn" type="java.lang.Integer" value="2"/>
+    </provides>
+    <callback method="start" transition="validate"/>
+    <callback method="stop" transition="invalidate"/>
+  </component>
+  <instance component="FollowMeProvider" name="FollowMeProviderInst"/>
+</ipojo>
