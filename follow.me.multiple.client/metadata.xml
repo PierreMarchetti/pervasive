@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipojo xmlns="org.apache.felix.ipojo">
+  <component classname="follow.me.multiple.client.FollowMeClientImpl" name="FollowMeClient">
+    <requires aggregate="true" specification="follow.me.multiple.service.FollowMeItf" field="followMeServices">
+      <callback method="bindFollowMeServices" type="bind"/>
+      <callback method="unbindFollowMeServices" type="unbind"/>
+    </requires>
+    <callback method="start" transition="validate"/>
+    <callback method="stop" transition="invalidate"/>
+  </component>
+  <instance component="FollowMeClient" name="FollowMeClientInst"/>
+</ipojo>

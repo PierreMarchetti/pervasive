@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipojo xmlns="org.apache.felix.ipojo">
+  <component classname="org.example.follow.me.configuration.client.FollowMeClientImpl" name="FollowMeProvider">
+    <provides specifications="org.example.follow.me.configuration.FollowMeConfiguration">
+      <property field="maxLightsToTurnOn" name="maxLightsToTurnOn" type="java.lang.Integer" value="2"/>
+    </provides>
+    <callback method="start" transition="validate"/>
+    <callback method="stop" transition="invalidate"/>
+    <requires aggregate="true" optional="true" specification="org.example.follow.me.configuration.FollowMeConfiguration" field="followMeServices">
+      <callback method="bindFollowMe" type="bind"/>
+      <callback method="unbindFollowMe" type="unbind"/>
+    </requires>
+  </component>
+  <instance component="FollowMeProvider" name="FollowMeClient"/>
+</ipojo>

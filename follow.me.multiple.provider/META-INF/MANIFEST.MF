@@ -1,0 +1,58 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Provider_Multiple
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: follow.me.multiple.provider
+Bundle-Version: 1.0.0.qualifier
+Created-By: iPOJO 1.12.1
+Import-Package: follow.me.multiple.service, fr.liglab.adele.icasa, fr.
+ liglab.adele.icasa.access, fr.liglab.adele.icasa.access.command, fr.l
+ iglab.adele.icasa.application, fr.liglab.adele.icasa.application.impl
+ , fr.liglab.adele.icasa.application.impl.command, fr.liglab.adele.ica
+ sa.application.remote, fr.liglab.adele.icasa.application.remote.util,
+  fr.liglab.adele.icasa.clockservice, fr.liglab.adele.icasa.clockservi
+ ce.impl, fr.liglab.adele.icasa.clockservice.util, fr.liglab.adele.ica
+ sa.command, fr.liglab.adele.icasa.command.handler, fr.liglab.adele.ic
+ asa.commands, fr.liglab.adele.icasa.commands.impl, fr.liglab.adele.ic
+ asa.common, fr.liglab.adele.icasa.common.impl, fr.liglab.adele.icasa.
+ common.xml.utils, fr.liglab.adele.icasa.dependency.manager.exception,
+  fr.liglab.adele.icasa.device, fr.liglab.adele.icasa.device.bathrooms
+ cale, fr.liglab.adele.icasa.device.box, fr.liglab.adele.icasa.device.
+ button, fr.liglab.adele.icasa.device.button.simulated, fr.liglab.adel
+ e.icasa.device.doorWindow, fr.liglab.adele.icasa.device.gasSensor, fr
+ .liglab.adele.icasa.device.light, fr.liglab.adele.icasa.device.manage
+ r, fr.liglab.adele.icasa.device.motion, fr.liglab.adele.icasa.device.
+ power, fr.liglab.adele.icasa.device.presence, fr.liglab.adele.icasa.d
+ evice.security, fr.liglab.adele.icasa.device.settopbox, fr.liglab.ade
+ le.icasa.device.sound, fr.liglab.adele.icasa.device.sprinkler, fr.lig
+ lab.adele.icasa.device.temperature, fr.liglab.adele.icasa.device.util
+ , fr.liglab.adele.icasa.exception, fr.liglab.adele.icasa.frontend.ser
+ vices, fr.liglab.adele.icasa.frontend.services.rest, fr.liglab.adele.
+ icasa.frontend.services.utils, fr.liglab.adele.icasa.listener, fr.lig
+ lab.adele.icasa.location, fr.liglab.adele.icasa.location.impl, fr.lig
+ lab.adele.icasa.location.util, fr.liglab.adele.icasa.remote.wisdom, f
+ r.liglab.adele.icasa.remote.wisdom.util, fr.liglab.adele.icasa.servic
+ e.location, fr.liglab.adele.icasa.service.preferences, fr.liglab.adel
+ e.icasa.service.scheduler, fr.liglab.adele.icasa.service.zone.dimensi
+ on.calculator, fr.liglab.adele.icasa.service.zone.size.calculator, fr
+ .liglab.adele.icasa.simulator, fr.liglab.adele.icasa.simulator.listen
+ er, fr.liglab.adele.icasa.simulator.listener.util, fr.liglab.adele.ic
+ asa.simulator.remote.wisdom.util, fr.liglab.adele.icasa.simulator.scr
+ ipt.executor, fr.liglab.adele.icasa.simulator.services, org.apache.fe
+ lix.ipojo;version="[1.12.1,2.0.0)", org.apache.felix.ipojo.architectu
+ re;version="[1.12.1,2.0.0)", org.json, org.osgi.service.cm;version=1.
+ 2, org.osgi.service.log;version=1.3
+iPOJO-Components: instance { $component="FollowMeProvider" $name="Foll
+ owMeProviderInst" }component { $classname="follow.me.multiple.impl.Fo
+ llowMeProviderImpl" $name="FollowMeProvider" provides { $specificatio
+ ns="follow.me.multiple.service.FollowMeItf" property { $field="maxNbL
+ ightsToTurnOn" $name="maxNbLightsToTurnOn" $type="java.lang.Integer" 
+ $value="2" }}callback { $method="start" $transition="validate" }callb
+ ack { $method="stop" $transition="invalidate" }manipulation { $classn
+ ame="follow.me.multiple.impl.FollowMeProviderImpl" interface { $name=
+ "follow.me.multiple.service.FollowMeItf" }field { $name="maxNbLightsT
+ oTurnOn" $type="java.lang.Integer" }method { $name="getMaxNbLightsToT
+ urnOn" $return="int" }method { $name="setMaxNbLightsToTurnOn" $argume
+ nts="{int}" $names="{maxNbLights}" }method { $name="stop" }method { $
+ name="start" }}}
+
